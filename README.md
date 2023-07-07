@@ -7,6 +7,7 @@
 ##### Java基础
 
 - [基础数据类型](doc/Java/Java基础/基础数据类型.md)
+- [异常](doc/Java/Java基础/异常.md)
 
 ##### 集合
 
