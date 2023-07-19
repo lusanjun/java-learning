@@ -326,6 +326,48 @@ InnoDB的数据是以行（Row）为单位存储，一个页中包含多个行
 
 脏页从缓冲区刷新到磁盘，不是每次页更新之后触发，而是通过`CheckPoint`机制刷新磁盘。
 
+每次更新直接写入磁盘的问题：
+
+- 如果每次一个页发生变化就进行落盘，每次落盘一个页，必然有4次IO操作，性能开销大
+- 如果数据长期在内存中保存，数据就存在安全性风险
+- InnoDB采用Write Ahead Log 策略和Force Log at Commit机制实现事务级别下数据的持久性:
+  - Force Log at Commit机制：事务提交时，所有事务产生的日志都必须刷到磁盘
+  - Write Ahead Log（WAL）策略：数据变更写入到磁盘前，首先将内存中的日志写入磁盘。InnoDB是redo log，对于写操作，永远是日志先行，先写入redo log 确保一致性后，再对修改数据进行落盘。
+
+##### 6.6.2 Redo日志落盘
+
+##### 6.6.3 CheckPoint机制
+
+CheckPoint是将缓冲池中的脏页数据刷到磁盘上的机制，决定脏页落盘的时机、条件和脏页的选择等
+
+解决问题：
+
+- 脏页落盘：避免数据更改直接操作磁盘
+- 缩短数据库的恢复时间：数据库宕机，不需要重做所有日志，因为CheckPoint之前的页都已经刷新回磁盘，数据库只需对CheckPoint后的redo日志进行恢复。
+- 缓冲池不够用时，将脏页刷新到磁盘：缓冲池不够用时，根据LRU算法会溢出最近最少使用的页，若此页是脏页，需要强制执行CheckPoint，将脏页刷回磁盘。
+- redo日志不可用时，刷新脏页：当redo日志出现不可用时，CheckPoint将缓冲池中的页至少刷新到当前redo日志的位置
+
+CheckPoint分类
+
+- sharp checkpotin：关闭数据库时，将buffer pool的脏页全部刷新到磁盘中
+- fuzzy checkpoint：默认方式。只刷新一部分脏页，不是刷新所有
+  - Master Thread CheckPoint：在Master Thread中，会以每秒或每10秒一次的频率，将部分脏页从内存中刷新到磁盘，这个过程是异步的。
+  - FLUSH_LRU_LIST Checkpoint：缓冲池不够用时，根据LRU算法会淘汰掉最近最少使用的页，如果该页是脏页的话，会强制执行CheckPoint，将该脏页刷回磁盘。
+  - Async/Sync Flush Checkpoint：重做日志不可用的情况，需要强制从脏页列表中选取一些脏页刷盘。
+  - Dirty Page too much：脏页数量太多，导致强制进行Checkpoint。
+
+##### 6.6.4 Double Write双写
+
+脏页落盘出现的问题：写失效。数据库准备刷新脏页时，将16KB刷入磁盘，当写入8K，宕机了，称为写失效（partial page write）。
+
+解决方案：上备胎。在redo日志前，对需要写入的页做副本，写失效时，通过页的副本还原该页再重做，就是double write。写失效后redo日志也是无法进行恢复的，因为redo日志记录的是对页的物理修改。
+
+双写刷新脏页的流程：
+
+- 首先复制：脏页刷新时不直接写磁盘，而是先将脏页复制到内存的Doublewrite buffer
+- 再顺序写：内存的Doublewrite buffer 分两次，每次1MB顺序地写入共享表空间的物理磁盘上，会立即调用fsync函数同步OS缓冲到磁盘中，顺序写性能好
+- 最后离散写：内存的Doublewrite buffer最后将页写入各自表空间文件中，离散写较顺序写入差一些
+
 
 
 

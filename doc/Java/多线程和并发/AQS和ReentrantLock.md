@@ -284,12 +284,10 @@ protected final boolean tryRelease(int releases) {
    }
    ```
 
-   
-
    非公平锁，不管AQS是否有线程在等待，都会先通过CAS抢占锁。
 
    ```java
-   //非公平锁，入队前，二次插队
+//非公平锁，入队前，二次插队
    if (compareAndSetState(0, acquires)) {
    	setExclusiveOwnerThread(current);
    	return true;

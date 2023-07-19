@@ -150,7 +150,7 @@ public void syn();
       
 ```
 
-从字节码文件中可以看出 synchronized 代码块是由 monitorenter 指令进入锁，monitorexit 指令退出锁，synchronized 方法是由 ACC_SYNCHRONIZED 来控制锁。
+从字节码文件中可以看出 synchronized 代码块是由 monitorenter 指令进入锁，monitorexit 指令退出锁，synchronized 方法是由 ACC_SYNCHRONIZED 访问标志来控制锁。
 
 - monitorenter 指令：每个对象都有一个监视器锁（monitor），当 monitor 被占用时就会处于锁定状态，线程执行 monitorenter 指令时尝试获取 monitor 的所有权，当计数器 _count 为0时，该程序就获取到了 monitor 锁，并将 _count 计数器 +1，如果线程已经占有该 monitor ，可以重入。如果其他线程已经占用了 monitor ，则该线程会进入阻塞状态，直到计数器为0，再次尝试竞争 monitor。
 - monitorexit 指令：当线程执行到 monitorexit 指令，则释放 monitor 锁，_count 计数器就 -1为0。该指令出现两次，第一次是线程正常退出释放锁，第二次为异常处理器，可以处理一起异常以能够释放锁。
