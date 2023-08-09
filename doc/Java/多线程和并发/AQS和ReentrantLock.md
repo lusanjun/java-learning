@@ -8,7 +8,7 @@ AQS，AbstractQueuedSynchronizer，抽象队列同步器。本身只是一个抽
 
 #### 1.2 结构
 
-![AQS](https://gitee.com/lusanjun/blog-img/raw/master/AQS.png)
+![AQS](https://gitee.com/lusanjun/blog-img/raw/master/img/AQS.png)
 
 ```java
 //AQS内部维护这一个双向链表，AQS主要属性
@@ -76,21 +76,21 @@ AQS有两个节点head和tail分别是头节点和尾节点，默认为null。AQ
 
 1. AQS的head、tail分别代表同步队列头节点和尾节点指针，默认为null
 
-   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/AQS1.png)
+   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/img/AQS1.png)
 
 2. 当第一个线程抢夺锁失败，同步队列会先初始化，随后线程会被封装成Node节点追加到AQS队列中。假设当前独占锁的线程为ThreadA，抢占锁失败的线程为ThreadB。
 
    1）同步队列初始化，首先会在队列中添加一个空Node，代表当前获取锁成功的线程，AQS的head和tail同时指向这个节点。
 
-   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/AQS2.png)
+   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/img/AQS2.png)
 
    2）接下来将ThreadB封装成Node节点，追加到AQS队列，设置新节点的prev指向AQS队尾节点。将队尾节点的next指向新节点。最后将AQS尾节点指针指向新节点。
 
-   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/AQS3.png)
+   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/img/AQS3.png)
 
 3. 当下一个线程抢夺锁失败时，重复上面步骤。将新线程封装成Node，追加到AQS队列。
 
-   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/AQS4.png)
+   ![AQS](https://gitee.com/lusanjun/blog-img/raw/master/img/AQS4.png)
 
 ##### 1.3.2 线程被唤醒时
 
@@ -104,7 +104,7 @@ head节点表示当前获取锁成功的线程ThreadA节点。
 2. 将原来头节点的next指向null，从AQS队列中删除
 3. 将ThreadB节点的prev指向Null，设置节点的thread=null
 
-![AQS](https://gitee.com/lusanjun/blog-img/raw/master/AQS5.png)
+![AQS](https://gitee.com/lusanjun/blog-img/raw/master/img/AQS5.png)
 
 ### 2. ReentrantLock
 

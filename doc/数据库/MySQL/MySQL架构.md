@@ -2,7 +2,7 @@
 
 ### 1. MySQL架构图
 
-![MySQL架构](https://gitee.com/lusanjun/blog-img/raw/master/MySQL.png)
+![MySQL架构](https://gitee.com/lusanjun/blog-img/raw/master/img/MySQL.png)
 
 ### 2. 四层体系架构
 
@@ -195,7 +195,7 @@ select, id ,name, age, from, user, where, id, = ,3
 
 #### 6.3 内存结构
 
-![InnoDB](https://gitee.com/lusanjun/blog-img/raw/master/InnoDB.png)
+![InnoDB](https://gitee.com/lusanjun/blog-img/raw/master/img/InnoDB.png)
 
 ##### 6.3.1 缓冲池(Buffer Pool)
 

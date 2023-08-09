@@ -4,7 +4,7 @@
 
 ### 1. 运行时内存区域
 
-![JVMRuntimeArea](https://gitee.com/lusanjun/blog-img/raw/master/JVMRuntimeArea.png)
+![JVMRuntimeArea](https://gitee.com/lusanjun/blog-img/raw/master/img/JVMRuntimeArea.png)
 
 线程私有区域的生命周期与线程相同，随线程的启动而创建，随线程的结束而销毁。
 
@@ -50,7 +50,7 @@ Java堆（Java heap）是虚拟机所管理的内存中最大的一块，是被�
 
 - 老年代存储对象比新生代存储对象的年龄大得多。老年代也存储一些大对象。
 
-![Heap](https://gitee.com/lusanjun/blog-img/raw/master/Heap.png)
+![Heap](https://gitee.com/lusanjun/blog-img/raw/master/img/Heap.png)
 
 堆可以处于物理不连续的内存空间，但在逻辑上应该被视为连续的。
 
@@ -107,7 +107,7 @@ HotSpot 虚拟机里，对象在堆中的存储布局分为：对象头、实力
 
 另一部分是类型指针，即对象指向它的类型元数据的指针，JVM 通过这个指针来确定该对象是哪个类的实例。
 
-![MarkWord](https://gitee.com/lusanjun/blog-img/raw/master/MarkWord.png)
+![MarkWord](https://gitee.com/lusanjun/blog-img/raw/master/img/MarkWord.png)
 
 ##### 2.2.2 实例数据
 

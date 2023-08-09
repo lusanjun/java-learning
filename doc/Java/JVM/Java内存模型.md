@@ -8,7 +8,7 @@
 
 多路处理器系统中，每个处理器都有自己的高速缓存，而它们又共享同一主内存，当多个处理器的运算任务都涉及同一块主内存，可能导致缓存数据不一致。为了解决这一问题，需要各处理器访问缓存时都遵循一些协议，在读写时要根据协议来进行操作，维护缓存一致性。
 
-![CacheCoherence](https://gitee.com/lusanjun/blog-img/raw/master/CacheCoherence.png)
+![CacheCoherence](https://gitee.com/lusanjun/blog-img/raw/master/img/CacheCoherence.png)
 
 ### 2. 主内存与工作内存
 
@@ -18,7 +18,7 @@ Java 内存模型规定了所有的变量（共享的）都存储在主内存（
 
 主内存、工作内存与 Java 内存区域中的 Java 堆、栈、方法区等并不是同一个层次的对内存的划分。如果两者一定要勉强对应起来，主内存主要对应于Java堆中的对象实例数据部分，而工作内存则对应于虚拟机栈中的部分区域。
 
-![MainMemoryWorkingMemory](https://gitee.com/lusanjun/blog-img/raw/master/MainMemoryWorkingMemory.png)
+![MainMemoryWorkingMemory](https://gitee.com/lusanjun/blog-img/raw/master/img/MainMemoryWorkingMemory.png)
 
 ### 3. 内存间交互操作
 

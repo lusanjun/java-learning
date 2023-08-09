@@ -61,7 +61,7 @@ Class Metadata Address：类型指针，是对象指向它的类元数据的指�
 
 Mark Word：标记字段，用于存储对象自身的运行时数据。默认存储对象的hashCode、分代年龄、锁类型、锁标志位等信息。
 
-![MarkWord](https://gitee.com/lusanjun/blog-img/raw/master/MarkWord.png)
+![MarkWord](https://gitee.com/lusanjun/blog-img/raw/master/img/MarkWord.png)
 
 ##### 1.3.2 monitor 
 
@@ -280,7 +280,7 @@ public String append(String str){
 
 轻量级锁CAS操作之前堆栈与对象的状态：
 
-![StackBeforeCAS](https://gitee.com/lusanjun/blog-img/raw/master/StackBeforeCAS.png)
+![StackBeforeCAS](https://gitee.com/lusanjun/blog-img/raw/master/img/StackBeforeCAS.png)
 
 加锁过程：
 
@@ -290,7 +290,7 @@ public String append(String str){
 
 3. 如果更新成功，即代表该线程拥有了这个对象的锁，并且对象Mark Word的锁标志位变为“00”，即处于轻量级锁状态。
 
-   ![StackAfterCAS](https://gitee.com/lusanjun/blog-img/raw/master/StackAfterCAS.png)
+   ![StackAfterCAS](https://gitee.com/lusanjun/blog-img/raw/master/img/StackAfterCAS.png)
 
 4. 如果更新失败，虚拟机会首先检查对象的Mark Word是否指向当前线程的栈帧。如果是，说明当前线程已经拥有了这个对象的锁，那直接进入同步块继续执行，否则说明这个锁对象已经被其他线程抢占了。如果出现两条以上的线程争用同一个锁，那轻量级锁就不再有效，必须膨胀为重量级锁，锁标志位为“10”，后面等待锁的线程也必须进入阻塞状态。
 

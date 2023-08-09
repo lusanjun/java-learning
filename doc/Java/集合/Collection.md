@@ -2,7 +2,7 @@
 
 ### 1.Collection体系
 
-![image-20230708152405665](https://gitee.com/lusanjun/blog-img/raw/master/202307081524678.png)
+![Collection](https://gitee.com/lusanjun/blog-img/raw/master/img/Collection.png)
 
 ### 2. JDK描述
 

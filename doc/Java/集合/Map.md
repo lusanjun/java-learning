@@ -4,7 +4,7 @@
 
 ### 1.map体系
 
-![Map](https://gitee.com/lusanjun/blog-img/raw/master/Map.png)
+![Map](https://gitee.com/lusanjun/blog-img/raw/master/img/Map.png)
 
 ### 2. HashMap
 
@@ -22,7 +22,7 @@ HashMap 是非线程安全的。要求安全可以使用 ConcurrentHashMap。
 
 #### 2.1 数据结构
 
-![HashMap](https://gitee.com/lusanjun/blog-img/raw/master/HashMap.png)
+![HashMap](https://gitee.com/lusanjun/blog-img/raw/master/img/HashMap.png)
 
 在 JDK8 之前，内部包含了一个 Entry 类型的数组 table 。Entry 存储着键值对。数组的每个位置被当成一个桶，一个桶存放一个链表。极端情况下，复杂度从 O(1) 降低到 O(n) 。
 
