@@ -86,10 +86,10 @@
 
 - [概述](doc/数据库/MongoDB/概述.md)
 - [操作命令](doc/数据库/MongoDB/操作命令.md)
-- 架构
-- 索引
-- SpringBoot集成
-- 高可用
+- [架构](doc/数据库/MongoDB/架构.md)
+- [索引](doc/数据库/MongoDB/索引.md)
+- [Java使用MongoDB](doc/数据库/MongoDB/Java使用MongoDB.md)
+- [高可用集群](doc/数据库/MongoDB/高可用集群.md)
 
 #### ElasticSearch
 

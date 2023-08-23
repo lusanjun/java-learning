@@ -415,13 +415,19 @@
    sudo systemctl daemon-reload
    ```
 
-4. 确认启动成功
+4. 查看服务状态
 
    ```shell
    sudo systemctl status mongod
    ```
 
    看到`Active: active (running)`则启动成功
+
+   如果启动失败，可以执行以下命令，再重新启动
+
+   ```shell
+   sudo rm -rf /tmp/mongodb-27017.sock
+   ```
 
 5. 关闭服务
 
@@ -444,8 +450,9 @@
 8. 创建用户名密码
 
    ```shell
+   use admin
    db.createUser({
-     user: 'admin',    // 用户名（自定义）
+     user: 'root',    // 用户名（自定义）
      pwd: 'abc123',    // 密码（自定义）
      roles:[{
        role: 'root',   // 选择角色属性，这里选择"超级账号"
@@ -459,7 +466,10 @@
    ```shell
    vim /etc/mongod.conf
    
-   #取消注释
+   #允许远程访问
+   net:
+     port: 27017
+     bindIp: 0.0.0.0
    security:
      authorization: enabled
    ```
