@@ -50,30 +50,49 @@
 - [ThreadLocal](doc/Java/多线程和并发/ThreadLocal.md)
 - [Future和FutureTask](doc/Java/多线程和并发/Future和FutureTask.md)
 
-#### JavaWeb
-
 #### 设计模式
 
 #### 数据结构
 
+- 栈
+- 队列
+- 链表
+- 散列表
+- 二叉排序树
+- 红黑树
+- 位图
+
 #### 算法
 
+- 查找
+- 排序
 
-
-## 🍀Spring框架
+## 🍀Spring
 
 #### Spring
 
+- IOC
+- AOP
+- Bean
+- SpringMVC
+
 #### SpringBoot
 
+- 启动原理
+
 #### SpringCloud
+
+- Eureka
+- Nacos
+- Feign
+- Gateway
 
 ## 💳数据库
 
 #### MySQL
 
 - [MySQL架构](doc/数据库/MySQL/MySQL架构.md)
-- [事务](doc/数据库/MySQL/事务.md)
+- [事务MVCC](doc/数据库/MySQL/事务MVCC.md)
 - [索引](doc/数据库/MySQL/索引.md)
 - [MySQL锁](doc/数据库/MySQL/MySQL锁.md)
 - [性能优化](doc/数据库/MySQL/性能优化.md)
@@ -81,6 +100,13 @@
 - [分库分表](doc/数据库/MySQL/分库分表.md)
 
 #### Redis
+
+- [数据结构](doc/数据库/Redis/数据结构.md)
+- 网络模型
+- 内存管理
+- [持久化](doc/数据库/Redis/持久化.md)
+- 运维
+- 应用场景
 
 #### MongoDB
 
@@ -93,9 +119,13 @@
 
 #### ElasticSearch
 
-## 🧭框架
+## 🧭框架中间件
+
+#### Tomcat
 
 #### MyBatis
+
+#### Nginx
 
 #### RocketMQ
 
@@ -105,13 +135,13 @@
 
 #### Dubbo
 
-#### Nginx
-
-
+#### 微服务
 
 ## 📟Linux运维
 
 #### Linux常用命令
+
+- CPU
 
 #### Docker
 
@@ -121,10 +151,12 @@
 
 #### Git
 
-### 软件维护汇总
+#### 软件维护
 
 - [centos8软件维护](doc/Linux运维/软件维护汇总/centos8软件维护.md)
 
 ## 💻计算机知识
+
+#### 网络
 
 ## 📝常用代码库
